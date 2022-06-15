@@ -1,0 +1,4 @@
+name = "PowerSystemsReduction"
+uuid = "7c38b70f-5f4c-4888-b4f4-1ac0d07879b6"
+authors = ["cbarrows <clayton.barrows@nrel.gov>"]
+version = "0.1.0"
