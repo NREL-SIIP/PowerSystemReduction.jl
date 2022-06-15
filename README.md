@@ -2,6 +2,85 @@
 
 The `PowerSystemsReduction.jl` package provides utilities and routines to reduce the size and complexity of a `System` represented in [PowerSystems.jl](https://github.com/NREL-SIIP/PowerSystems.jl),
 
+## Installation
+
+```julia
+using Pkg
+Pkg.add("https://github.com/NREL-SIIP/PowerSystemsReduction.jl")
+```
+
+## Example
+
+```julia
+
+julia> using PowerSystems
+
+julia> using PowerSystemCaseBuilder
+
+julia> using PowerSystemsReduction
+
+julia> sys = build_system(PSSETestSystems, "pti_case73_sys")
+System
+┌───────────────────┬─────────────┐
+│ Property          │ Value       │
+├───────────────────┼─────────────┤
+│ System Units Base │ SYSTEM_BASE │
+│ Base Power        │ 100.0       │
+│ Base Frequency    │ 60.0        │
+│ Num Components    │ 460         │
+└───────────────────┴─────────────┘
+
+Static Components
+┌─────────────────┬───────┬────────────────────────┬───────────────┐
+│ Type            │ Count │ Has Static Time Series │ Has Forecasts │
+├─────────────────┼───────┼────────────────────────┼───────────────┤
+│ Arc             │ 108   │ false                  │ false         │
+│ Area            │ 3     │ false                  │ false         │
+│ Bus             │ 73    │ false                  │ false         │
+│ FixedAdmittance │ 3     │ false                  │ false         │
+│ Line            │ 105   │ false                  │ false         │
+│ LoadZone        │ 3     │ false                  │ false         │
+│ PowerLoad       │ 51    │ false                  │ false         │
+│ TapTransformer  │ 15    │ false                  │ false         │
+│ ThermalStandard │ 99    │ false                  │ false         │
+└─────────────────┴───────┴────────────────────────┴───────────────┘
+
+
+
+julia> rollup = transmission_rollup!(sys)
+┌ Info: removing leaf nodes
+└   length(leaf_nodes) = 2
+Dict{Any, Any} with 2 entries:
+  "208" => Any["207"]
+  "308" => Any["307"]
+
+julia> sys
+System
+┌───────────────────┬─────────────┐
+│ Property          │ Value       │
+├───────────────────┼─────────────┤
+│ System Units Base │ SYSTEM_BASE │
+│ Base Power        │ 100.0       │
+│ Base Frequency    │ 60.0        │
+│ Num Components    │ 454         │
+└───────────────────┴─────────────┘
+
+Static Components
+┌─────────────────┬───────┬────────────────────────┬───────────────┐
+│ Type            │ Count │ Has Static Time Series │ Has Forecasts │
+├─────────────────┼───────┼────────────────────────┼───────────────┤
+│ Arc             │ 106   │ false                  │ false         │
+│ Area            │ 3     │ false                  │ false         │
+│ Bus             │ 71    │ false                  │ false         │
+│ FixedAdmittance │ 3     │ false                  │ false         │
+│ Line            │ 103   │ false                  │ false         │
+│ LoadZone        │ 3     │ false                  │ false         │
+│ PowerLoad       │ 51    │ false                  │ false         │
+│ TapTransformer  │ 15    │ false                  │ false         │
+│ ThermalStandard │ 99    │ false                  │ false         │
+└─────────────────┴───────┴────────────────────────┴───────────────┘
+```
+
 ## Development
 
 Contributions to the development and enahancement of PowerSystems is welcome. Please see [CONTRIBUTING.md](https://github.com/NREL-SIIP/InfrastructureSystems.jl/blob/master/CONTRIBUTING.md) for code contribution guidelines.
