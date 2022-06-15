@@ -29,6 +29,10 @@ function move_components!(sys::System, leaf_node::Bus)
     end
 end
 
+"""
+Routine to remove leaf nodes and stem branches from a System. Recursively moves any component connected
+to a leaf node to other side of the stem branch and deletes the leaf node and stem branch.
+"""
 function transmission_rollup!(sys::System)
     leaf_nodes = get_leaf_nodes(sys)
 
