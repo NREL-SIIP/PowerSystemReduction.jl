@@ -1,6 +1,9 @@
 # PowerSystemsReduction.jl
 
-The `PowerSystemsReduction.jl` package provides utilities and routines to reduce the size and complexity of a `System` represented in [PowerSystems.jl](https://github.com/NREL-SIIP/PowerSystems.jl),
+
+## This package is now archived. The network reduction functionality has been now integrated into [PowerNetworkMatrices.jl](https://github.com/NREL-Sienna/PowerNetworkMatrices.jl) and it doesn't modify the system input data. 
+
+The `PowerSystemsReduction.jl` package provides utilities and routines to reduce the size and complexity of a `System` represented in [PowerSystems.jl](https://github.com/NREL-SIIP/PowerNetworkMatrices.jl). Use with care as it modifies the input data. 
 
 ## Installation
 
